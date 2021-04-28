@@ -1,0 +1,23 @@
+<launch>
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+        <rosparam file="$(find mrobot_navigation)/config/fake/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find mrobot_navigation)/config/fake/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find mrobot_navigation)/config/fake/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find mrobot_navigation)/config/fake/global_costmap_params.yaml" command="load" />
+        <!--
+        <rosparam file="$(find mrobot_navigation)/config/fake/base_local_planner_params.yaml" command="load" />
+         -->
+        <rosparam file="$(find mrobot_navigation)/config/mrobot/teb_local_planner_params.yaml" command="load" />
+        <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+        <param name="controller_frequency" value="1" />
+        
+        <!--
+        <rosparam file="$(find mrobot_navigation)/config/mrobot/mpc_local_planner_params_minimum_time.yaml" command="load" />
+        <param name="base_local_planner" value="mpc_local_planner/MpcLocalPlannerROS" />
+        <param name="controller_frequency" value="1" />
+        -->
+       
+    </node>
+  
+</launch>
